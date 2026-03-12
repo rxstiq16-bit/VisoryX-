@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { ScrollArea } from "@/components/ui/scroll-area"
-import { MessageCircle, Send, X, Bot, User, Loader2, Sparkles } from "lucide-react"
+import { HelpCircle, Send, X, Bot, User, Loader2, Sparkles } from "lucide-react"
 import { cn } from "@/lib/utils"
 
 interface Message {
@@ -72,8 +72,8 @@ export function FAQChatbot() {
 
   return (
     <>
-      <Button onClick={() => setIsOpen(true)} className={cn("fixed bottom-6 left-6 z-50 h-14 w-14 rounded-full shadow-lg", isOpen && "hidden")} size="icon">
-        <MessageCircle className="h-6 w-6" />
+      <Button onClick={() => setIsOpen(true)} className={cn("fixed bottom-6 left-6 z-50 h-14 w-14 rounded-full shadow-lg bg-secondary text-secondary-foreground hover:bg-secondary/90", isOpen && "hidden")} size="icon">
+        <HelpCircle className="h-6 w-6" />
       </Button>
       {isOpen && (
         <Card className="fixed bottom-6 left-6 z-50 w-[380px] max-w-[calc(100vw-2rem)] shadow-2xl">

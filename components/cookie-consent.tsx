@@ -52,6 +52,9 @@ export function CookieConsent() {
     setPreferences(prefs)
     setShowBanner(false)
     setShowSettings(false)
+    // Ensure body overflow is reset
+    document.body.style.overflow = ""
+    document.body.style.pointerEvents = ""
   }
 
   const acceptAll = () => {

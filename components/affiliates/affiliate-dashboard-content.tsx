@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
@@ -28,6 +28,7 @@ import {
   Wallet
 } from 'lucide-react'
 import { toast } from 'sonner'
+import { createClient } from '@/lib/supabase/client'
 
 interface Affiliate {
   id: string
@@ -45,41 +46,50 @@ interface Affiliate {
   created_at: string
 }
 
+interface Conversion {
+  id: string
+  order_id: string
+  order_total: number
+  commission: number
+  status: string
+  created_at: string
+}
+
 interface AffiliateDashboardContentProps {
   affiliate: Affiliate
 }
 
-// Mock conversion data
-const MOCK_CONVERSIONS = [
-  {
-    id: '1',
-    order_id: 'ORD-2024-001',
-    order_total: 49.99,
-    commission: 5.00,
-    status: 'approved',
-    created_at: '2024-01-15T10:30:00Z'
-  },
-  {
-    id: '2',
-    order_id: 'ORD-2024-002',
-    order_total: 129.99,
-    commission: 13.00,
-    status: 'pending',
-    created_at: '2024-01-14T14:20:00Z'
-  },
-  {
-    id: '3',
-    order_id: 'ORD-2024-003',
-    order_total: 79.99,
-    commission: 8.00,
-    status: 'paid',
-    created_at: '2024-01-10T09:15:00Z'
-  }
-]
-
 export function AffiliateDashboardContent({ affiliate }: AffiliateDashboardContentProps) {
   const [copied, setCopied] = useState(false)
+  const [conversions, setConversions] = useState<Conversion[]>([])
+  const [loading, setLoading] = useState(true)
+  const supabase = createClient()
   const affiliateLink = `https://visoryx.com/?ref=${affiliate.affiliate_code}`
+  
+  useEffect(() => {
+    async function fetchConversions() {
+      try {
+        const { data, error } = await supabase
+          .from('affiliate_conversions')
+          .select('*')
+          .eq('affiliate_id', affiliate.id)
+          .order('created_at', { ascending: false })
+          .limit(20)
+        
+        if (error) {
+          console.error('Error fetching conversions:', error)
+        } else {
+          setConversions(data || [])
+        }
+      } catch (error) {
+        console.error('Error:', error)
+      } finally {
+        setLoading(false)
+      }
+    }
+    
+    fetchConversions()
+  }, [affiliate.id, supabase])
   
   const conversionRate = affiliate.total_clicks > 0 
     ? ((affiliate.total_conversions / affiliate.total_clicks) * 100).toFixed(2)
@@ -248,34 +258,50 @@ export function AffiliateDashboardContent({ affiliate }: AffiliateDashboardConte
                 </CardDescription>
               </CardHeader>
               <CardContent>
-                <Table>
-                  <TableHeader>
-                    <TableRow>
-                      <TableHead>Order ID</TableHead>
-                      <TableHead>Date</TableHead>
-                      <TableHead>Order Total</TableHead>
-                      <TableHead>Commission</TableHead>
-                      <TableHead>Status</TableHead>
-                    </TableRow>
-                  </TableHeader>
-                  <TableBody>
-                    {MOCK_CONVERSIONS.map((conversion) => (
-                      <TableRow key={conversion.id}>
-                        <TableCell className="font-mono text-sm">
-                          {conversion.order_id}
-                        </TableCell>
-                        <TableCell>
-                          {new Date(conversion.created_at).toLocaleDateString()}
-                        </TableCell>
-                        <TableCell>${conversion.order_total.toFixed(2)}</TableCell>
-                        <TableCell className="font-medium text-green-600">
-                          +${conversion.commission.toFixed(2)}
-                        </TableCell>
-                        <TableCell>{getStatusBadge(conversion.status)}</TableCell>
+                {loading ? (
+                  <div className="flex items-center justify-center py-12">
+                    <div className="h-8 w-8 animate-spin rounded-full border-4 border-primary border-t-transparent" />
+                  </div>
+                ) : conversions.length === 0 ? (
+                  <div className="flex flex-col items-center justify-center py-12 text-center">
+                    <div className="mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-muted">
+                      <TrendingUp className="h-8 w-8 text-muted-foreground" />
+                    </div>
+                    <h3 className="mb-2 text-lg font-semibold">No conversions yet</h3>
+                    <p className="text-sm text-muted-foreground">
+                      Share your affiliate link to start earning commissions!
+                    </p>
+                  </div>
+                ) : (
+                  <Table>
+                    <TableHeader>
+                      <TableRow>
+                        <TableHead>Order ID</TableHead>
+                        <TableHead>Date</TableHead>
+                        <TableHead>Order Total</TableHead>
+                        <TableHead>Commission</TableHead>
+                        <TableHead>Status</TableHead>
                       </TableRow>
-                    ))}
-                  </TableBody>
-                </Table>
+                    </TableHeader>
+                    <TableBody>
+                      {conversions.map((conversion) => (
+                        <TableRow key={conversion.id}>
+                          <TableCell className="font-mono text-sm">
+                            {conversion.order_id}
+                          </TableCell>
+                          <TableCell>
+                            {new Date(conversion.created_at).toLocaleDateString()}
+                          </TableCell>
+                          <TableCell>${conversion.order_total.toFixed(2)}</TableCell>
+                          <TableCell className="font-medium text-green-600">
+                            +${conversion.commission.toFixed(2)}
+                          </TableCell>
+                          <TableCell>{getStatusBadge(conversion.status)}</TableCell>
+                        </TableRow>
+                      ))}
+                    </TableBody>
+                  </Table>
+                )}
               </CardContent>
             </Card>
           </TabsContent>

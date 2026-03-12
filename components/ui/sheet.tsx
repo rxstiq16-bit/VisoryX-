@@ -6,8 +6,24 @@ import { XIcon } from 'lucide-react'
 
 import { cn } from '@/lib/utils'
 
-function Sheet({ ...props }: React.ComponentProps<typeof SheetPrimitive.Root>) {
-  return <SheetPrimitive.Root data-slot="sheet" {...props} />
+function Sheet({
+  onOpenChange,
+  ...props
+}: React.ComponentProps<typeof SheetPrimitive.Root>) {
+  const handleOpenChange = React.useCallback(
+    (open: boolean) => {
+      onOpenChange?.(open)
+      // Reset body overflow when sheet closes to prevent scroll lock
+      if (!open) {
+        setTimeout(() => {
+          document.body.style.overflow = ""
+          document.body.style.pointerEvents = ""
+        }, 0)
+      }
+    },
+    [onOpenChange]
+  )
+  return <SheetPrimitive.Root data-slot="sheet" onOpenChange={handleOpenChange} {...props} />
 }
 
 function SheetTrigger({
