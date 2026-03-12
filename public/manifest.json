@@ -1,0 +1,21 @@
+{
+  "name": "VisoryX - Design Beyond Vision",
+  "short_name": "VisoryX",
+  "description": "Professional design services for branding, Discord, gaming, and more.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#09090b",
+  "theme_color": "#7c3aed",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/visoryx-logo.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["design", "business", "productivity"],
+  "screenshots": [],
+  "prefer_related_applications": false
+}
