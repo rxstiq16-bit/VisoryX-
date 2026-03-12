@@ -10,6 +10,8 @@ const quickLinks = [
   { href: "/services/discord", label: "Discord Services" },
   { href: "/order", label: "Order Now" },
   { href: "/designers", label: "Designers" },
+  { href: "/reviews", label: "Reviews" },
+  { href: "/case-studies", label: "Case Studies" },
 ];
 
 const resourceLinks = [
@@ -19,6 +21,9 @@ const resourceLinks = [
   { href: "/roadmap", label: "Roadmap" },
   { href: "/status", label: "Status" },
   { href: "/tools", label: "Tools" },
+  { href: "/api/docs", label: "API Docs" },
+  { href: "/developers", label: "Developers" },
+  { href: "/integrations", label: "Integrations" },
 ];
 
 const companyLinks = [
@@ -28,6 +33,19 @@ const companyLinks = [
   { href: "/affiliates", label: "Affiliates" },
   { href: "/gift-cards", label: "Gift Cards" },
   { href: "/contact", label: "Contact" },
+  { href: "/partners", label: "Partners" },
+  { href: "/team", label: "Team" },
+  { href: "/brand-kit", label: "Brand Kit" },
+];
+
+const communityLinks = [
+  { href: "/community", label: "Community" },
+  { href: "/loyalty", label: "Loyalty Program" },
+  { href: "/referrals", label: "Referrals" },
+  { href: "/achievements", label: "Achievements" },
+  { href: "/mood-board", label: "Mood Board" },
+  { href: "/waitlist", label: "Waitlist" },
+  { href: "/subscriptions", label: "Subscriptions" },
 ];
 
 const socialLinks = [
@@ -55,14 +73,14 @@ export function Footer() {
 
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         {/* Content grid */}
-        <div className="grid grid-cols-1 gap-16 py-16 lg:grid-cols-12">
+        <div className="grid grid-cols-2 gap-12 py-16 sm:grid-cols-3 lg:grid-cols-6">
           {/* Brand */}
-          <div className="lg:col-span-5">
-            <p className="max-w-sm text-sm text-muted-foreground leading-relaxed">
+          <div className="col-span-2 sm:col-span-3 lg:col-span-6 lg:pb-8">
+            <p className="max-w-lg text-sm text-muted-foreground leading-relaxed">
               Premium design studio crafting brands, logos, liveries, and digital
               experiences for gaming communities and businesses worldwide.
             </p>
-            <div className="mt-8 flex flex-wrap gap-4">
+            <div className="mt-6 flex flex-wrap gap-4">
               {socialLinks.map((item) => (
                 <a
                   key={item.label}
@@ -77,16 +95,16 @@ export function Footer() {
             </div>
           </div>
 
-          {/* Links */}
-          <div className="lg:col-span-2 lg:col-start-7">
+          {/* Navigation */}
+          <div>
             <h3 className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.25em] text-foreground">
-              <span className="h-px w-6 bg-primary" />
+              <span className="h-px w-4 bg-primary" />
               Navigation
             </h3>
-            <ul className="mt-8 space-y-5">
+            <ul className="mt-6 space-y-3">
               {quickLinks.map((link) => (
                 <li key={link.href}>
-                  <Link href={link.href} className="group inline-flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-foreground">
+                  <Link href={link.href} className="group inline-flex items-center gap-1.5 text-sm text-muted-foreground transition-colors hover:text-foreground">
                     {link.label}
                     <ArrowUpRight className="h-3 w-3 opacity-0 transition-all group-hover:opacity-100 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
                   </Link>
@@ -96,15 +114,15 @@ export function Footer() {
           </div>
 
           {/* Resources */}
-          <div className="lg:col-span-2">
+          <div>
             <h3 className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.25em] text-foreground">
-              <span className="h-px w-6 bg-primary" />
+              <span className="h-px w-4 bg-primary" />
               Resources
             </h3>
-            <ul className="mt-8 space-y-5">
+            <ul className="mt-6 space-y-3">
               {resourceLinks.map((link) => (
                 <li key={link.href}>
-                  <Link href={link.href} className="group inline-flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-foreground">
+                  <Link href={link.href} className="group inline-flex items-center gap-1.5 text-sm text-muted-foreground transition-colors hover:text-foreground">
                     {link.label}
                     <ArrowUpRight className="h-3 w-3 opacity-0 transition-all group-hover:opacity-100 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
                   </Link>
@@ -114,15 +132,33 @@ export function Footer() {
           </div>
 
           {/* Company */}
-          <div className="lg:col-span-2">
+          <div>
             <h3 className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.25em] text-foreground">
-              <span className="h-px w-6 bg-primary" />
+              <span className="h-px w-4 bg-primary" />
               Company
             </h3>
-            <ul className="mt-8 space-y-5">
+            <ul className="mt-6 space-y-3">
               {companyLinks.map((link) => (
                 <li key={link.href}>
-                  <Link href={link.href} className="group inline-flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-foreground">
+                  <Link href={link.href} className="group inline-flex items-center gap-1.5 text-sm text-muted-foreground transition-colors hover:text-foreground">
+                    {link.label}
+                    <ArrowUpRight className="h-3 w-3 opacity-0 transition-all group-hover:opacity-100 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Community */}
+          <div>
+            <h3 className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.25em] text-foreground">
+              <span className="h-px w-4 bg-primary" />
+              Community
+            </h3>
+            <ul className="mt-6 space-y-3">
+              {communityLinks.map((link) => (
+                <li key={link.href}>
+                  <Link href={link.href} className="group inline-flex items-center gap-1.5 text-sm text-muted-foreground transition-colors hover:text-foreground">
                     {link.label}
                     <ArrowUpRight className="h-3 w-3 opacity-0 transition-all group-hover:opacity-100 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
                   </Link>
@@ -132,16 +168,31 @@ export function Footer() {
           </div>
 
           {/* Contact */}
-          <div className="lg:col-span-2">
+          <div>
             <h3 className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.25em] text-foreground">
-              <span className="h-px w-6 bg-primary" />
-              Get in Touch
+              <span className="h-px w-4 bg-primary" />
+              Contact
             </h3>
-            <ul className="mt-8 space-y-5">
+            <ul className="mt-6 space-y-3">
               <li><a href="mailto:contact@visoryx.design" className="text-sm text-muted-foreground transition-colors hover:text-foreground">contact@visoryx.design</a></li>
-              <li><a href="https://discord.gg/Zeu8F7a2Rx" target="_blank" rel="noopener noreferrer" className="text-sm text-muted-foreground transition-colors hover:text-foreground">Join our Discord</a></li>
+              <li><a href="https://discord.gg/Zeu8F7a2Rx" target="_blank" rel="noopener noreferrer" className="text-sm text-muted-foreground transition-colors hover:text-foreground">Join Discord</a></li>
               <li><Link href="/contact" className="text-sm text-muted-foreground transition-colors hover:text-foreground">Contact Form</Link></li>
-              <li><Link href="/apply" className="text-sm text-muted-foreground transition-colors hover:text-foreground">Join Our Team</Link></li>
+              <li><Link href="/apply" className="text-sm text-muted-foreground transition-colors hover:text-foreground">Join Team</Link></li>
+            </ul>
+          </div>
+
+          {/* Settings */}
+          <div>
+            <h3 className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.25em] text-foreground">
+              <span className="h-px w-4 bg-primary" />
+              Account
+            </h3>
+            <ul className="mt-6 space-y-3">
+              <li><Link href="/settings/notifications" className="text-sm text-muted-foreground transition-colors hover:text-foreground">Notifications</Link></li>
+              <li><Link href="/settings/privacy" className="text-sm text-muted-foreground transition-colors hover:text-foreground">Privacy Settings</Link></li>
+              <li><Link href="/settings/security" className="text-sm text-muted-foreground transition-colors hover:text-foreground">Security</Link></li>
+              <li><Link href="/settings/integrations" className="text-sm text-muted-foreground transition-colors hover:text-foreground">Integrations</Link></li>
+              <li><Link href="/settings/calendar" className="text-sm text-muted-foreground transition-colors hover:text-foreground">Calendar</Link></li>
             </ul>
           </div>
         </div>

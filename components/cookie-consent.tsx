@@ -117,7 +117,7 @@ export function CookieConsent() {
         </CardContent>
       </Card>
 
-      <Dialog open={showSettings} onOpenChange={setShowSettings}>
+      <Dialog open={showSettings} onOpenChange={setShowSettings} modal={false}>
         <DialogContent className="sm:max-w-[500px]">
           <DialogHeader>
             <DialogTitle>Cookie Settings</DialogTitle>

@@ -24,6 +24,13 @@ import {
   Headphones,
   UserPlus,
   LayoutDashboard,
+  Gift,
+  Star,
+  Trophy,
+  Heart,
+  Code,
+  Link2,
+  BookOpen,
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
@@ -60,7 +67,16 @@ const CONNECT_ITEMS_ALL = [
   { href: "/apply", label: "Join the Team", desc: "We're hiring designers", icon: Users },
   { href: "/affiliations", label: "Affiliations", desc: "Partner with VisoryX", icon: Handshake },
   { href: "/status", label: "Service Status", desc: "Check system uptime", icon: Headphones },
-  ]
+  { href: "/partners", label: "Partners", desc: "Our trusted partners", icon: Handshake },
+  { href: "/community", label: "Community", desc: "Join our community", icon: Users },
+  { href: "/loyalty", label: "Loyalty Program", desc: "Earn rewards", icon: Gift },
+  { href: "/referrals", label: "Referrals", desc: "Refer friends & earn", icon: Heart },
+  { href: "/reviews", label: "Reviews", desc: "See what clients say", icon: Star },
+  { href: "/achievements", label: "Achievements", desc: "Unlock badges & rewards", icon: Trophy },
+  { href: "/developers", label: "Developers", desc: "API & developer tools", icon: Code },
+  { href: "/integrations", label: "Integrations", desc: "Connect your tools", icon: Link2 },
+  { href: "/help", label: "Help Center", desc: "Get support & FAQs", icon: BookOpen },
+]
 
 type NavItem =
   | { href: string; label: string; dropdown?: undefined }
