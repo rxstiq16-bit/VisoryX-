@@ -26,8 +26,6 @@ export function LayoutShell({ children }: { children: React.ReactNode }) {
     document.body.style.overflow = ""
     document.documentElement.style.overflow = ""
     
-    console.log("[v0] LayoutShell mounted, resetting overflow")
-    
     return () => {
       // Clean up on unmount
       document.body.style.overflow = ""

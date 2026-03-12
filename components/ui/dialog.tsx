@@ -7,9 +7,24 @@ import { XIcon } from 'lucide-react'
 import { cn } from '@/lib/utils'
 
 function Dialog({
+  onOpenChange,
   ...props
 }: React.ComponentProps<typeof DialogPrimitive.Root>) {
-  return <DialogPrimitive.Root data-slot="dialog" {...props} />
+  const handleOpenChange = React.useCallback(
+    (open: boolean) => {
+      onOpenChange?.(open)
+      // Reset body overflow when dialog closes to prevent scroll lock
+      if (!open) {
+        // Use setTimeout to ensure this runs after Radix's cleanup
+        setTimeout(() => {
+          document.body.style.overflow = ""
+          document.body.style.pointerEvents = ""
+        }, 0)
+      }
+    },
+    [onOpenChange]
+  )
+  return <DialogPrimitive.Root data-slot="dialog" onOpenChange={handleOpenChange} {...props} />
 }
 
 function DialogTrigger({
