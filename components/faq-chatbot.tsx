@@ -72,11 +72,11 @@ export function FAQChatbot() {
 
   return (
     <>
-      <Button onClick={() => setIsOpen(true)} className={cn("fixed bottom-4 right-4 z-50 h-14 w-14 rounded-full shadow-lg", isOpen && "hidden")} size="icon">
+      <Button onClick={() => setIsOpen(true)} className={cn("fixed bottom-6 left-6 z-50 h-14 w-14 rounded-full shadow-lg", isOpen && "hidden")} size="icon">
         <MessageCircle className="h-6 w-6" />
       </Button>
       {isOpen && (
-        <Card className="fixed bottom-4 right-4 z-50 w-[380px] max-w-[calc(100vw-2rem)] shadow-2xl">
+        <Card className="fixed bottom-6 left-6 z-50 w-[380px] max-w-[calc(100vw-2rem)] shadow-2xl">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-3">
             <div className="flex items-center gap-2">
               <div className="flex h-8 w-8 items-center justify-center rounded-full bg-primary"><Sparkles className="h-4 w-4 text-primary-foreground" /></div>
