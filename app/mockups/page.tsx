@@ -26,6 +26,24 @@ const mockups = [
     ]
   },
   {
+    id: "admin-order-detail",
+    title: "Admin Order Detail View",
+    description: "Detailed order view page for admins to manage individual orders. Shows order information, client details, assigned designer, file uploads/downloads, timeline/activity log, and real-time chat with the client.",
+    image: "/mockups/admin-order-detail-view.jpg",
+    category: "Admin Panel",
+    features: [
+      "Breadcrumb navigation (Orders > Order #ID)",
+      "Status and priority badges",
+      "Action buttons (Edit, Download Files, Mark Complete)",
+      "Order details card (service, package, price, dates)",
+      "Client information panel",
+      "Designer assignment with reassign option",
+      "File management (uploads and deliverables)",
+      "Activity timeline with status history",
+      "Real-time chat/messaging with client"
+    ]
+  },
+  {
     id: "order-form-view",
     title: "Client Order Form",
     description: "Client-facing multi-step order wizard with progress indicator, service selection, form fields for project details, style/color preferences, and order summary sidebar.",
