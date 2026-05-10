@@ -4,7 +4,7 @@ import { Inter, Syne } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
 import { AuthProvider } from '@/components/auth-provider'
 import { ThemeProvider } from '@/components/theme-provider'
-import { LayoutShell } from '@/components/layout-shell'
+
 
 import './globals.css'
 
@@ -78,12 +78,7 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <AuthProvider>
-            <a href="#main-content" className="sr-only focus:not-sr-only focus:absolute focus:z-[100] focus:top-4 focus:left-4 focus:rounded-md focus:bg-primary focus:px-4 focus:py-2 focus:text-primary-foreground">
-              Skip to content
-            </a>
-            <LayoutShell>
-              {children}
-            </LayoutShell>
+            {children}
           </AuthProvider>
         </ThemeProvider>
         <Analytics />
